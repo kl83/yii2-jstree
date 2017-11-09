@@ -12,7 +12,10 @@ function kl83InitJsTree ( $, options ) {
         };
     }
 
-    // Update list of selected elements
+    /**
+     * Update list of selected elements
+     * @returns null
+     */
     var updateSelectedText = function () {
         var nodes = jstree.get_selected(true);
         var text = '';
@@ -20,6 +23,26 @@ function kl83InitJsTree ( $, options ) {
             text += nodes[i].text + ", ";
         }
         selectedEl.text(text.replace(/,\s$/, ''));
+    };
+
+    /**
+     * Update hidden inputs
+     * @returns null
+     */
+    var updateHiddenItems = function () {
+        var nodes = jstree.get_checked();
+        if ( options.multiple ) {
+            hiddenWrapper.html('');
+            for ( var i in nodes ) {
+                hiddenWrapper.append('<input type="hidden" name="'+options.inputName+'[]" value="'+nodes[i]+'">');
+            }
+        } else {
+            if ( nodes.length ) {
+                rootEl.find('[type="hidden"]').val(nodes[0]);
+            } else {
+                rootEl.find('[type="hidden"]').val('');
+            }
+        }
     };
 
     // Initialize widget
@@ -41,27 +64,10 @@ function kl83InitJsTree ( $, options ) {
             }
         })
         .on('changed.jstree', function(){
+            updateHiddenItems();
             if ( options.popup ) {
                 updateSelectedText();
             }
         })
         .jstree(options.jstree).jstree();
-
-    // Appends the hidden inputs to the form befor her will be sent
-    form.bind('beforeSubmit', function(){
-        if ( options.multiple ) {
-            hiddenWrapper.html('');
-            var nodes = jstree.get_checked();
-            for ( var i in nodes ) {
-                hiddenWrapper.append('<input type="hidden" name="'+options.inputName+'[]" value="'+nodes[i]+'">');
-            }
-        } else {
-            var nodes = jstree.get_checked();
-            if ( nodes.length ) {
-                rootEl.find('[type="hidden"]').val(nodes[0]);
-            } else {
-                rootEl.find('[type="hidden"]').val('');
-            }
-        }
-    });
 }
