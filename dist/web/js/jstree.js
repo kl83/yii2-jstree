@@ -12,6 +12,9 @@ function kl83InitJsTree ( $, options ) {
         };
     }
 
+    // Removing hidden inputs, created by Yii. They are created, when the form method is GET.
+    form.children('input[name^="'+options.inputName+'"]').remove();
+
     /**
      * Update list of selected elements
      * @returns null
