@@ -14,7 +14,7 @@ $this->title = "JsTree plain";
 
     <?= kl83\jstree\JsTree::widget([
         'name' => 'test',
-        'value' => [ 321, 111 ],
+        'value' => json_encode([ 321, 111 ]),
         'source' => [ 'site/source' ],
     ]) ?>
 

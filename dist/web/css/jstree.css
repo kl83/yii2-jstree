@@ -1,1 +1,4 @@
+.kl83-jstree .selected-items:not(.empty) .not-set-text {
+  display: none;
+}
 /*# sourceMappingURL=jstree.css.map */

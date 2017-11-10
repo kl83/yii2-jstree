@@ -36,10 +36,9 @@ class JsTree extends \yii\widgets\InputWidget
 
     public function run()
     {
-        $inputName = $this->hasModel() ? Html::getInputName($this->model, $this->attribute) : $this->name;
+        $this->options['class'] = 'kl83-jstree';
         $clientOptions = [
             'id' => $this->options['id'],
-            'inputName' => $inputName,
             'multiple' => $this->multiple,
             'selectOnlyLeaf' => $this->selectOnlyLeaf,
             'popup' => $this->popup,
@@ -57,16 +56,8 @@ class JsTree extends \yii\widgets\InputWidget
             ],
         ];
         $this->view->registerJs("kl83InitJsTree(jQuery, ".Json::encode($clientOptions).");");
-        if ( $this->popup ) {
-            return $this->render('jstree/popup', [
-                'inputName' => $inputName,
-                'value' => $this->hasModel() ? $this->model->{$this->attribute} : $this->name,
-            ]);
-        } else {
-            return $this->render('jstree/plain', [
-                'inputName' => $inputName,
-                'value' => $this->hasModel() ? $this->model->{$this->attribute} : $this->name,
-            ]);
-        }
+        return $this->render( $this->popup ? 'jstree/popup' : 'jstree/plain', [
+            'hasModel' => $this->hasModel(),
+        ]);
     }
 }

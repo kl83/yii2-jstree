@@ -1,9 +1,6 @@
 function kl83InitJsTree ( $, options ) {
     var rootEl = $('#'+options.id);
-    var form = rootEl.closest('form');
-    var jstreeEl = rootEl.find('.jstree');
-    var hiddenWrapper = rootEl.find('.hidden-wrapper');
-    var selectedEl = rootEl.find('.selected-items');
+    var hiddenInput = rootEl.find('[type="hidden"]');
 
     if ( options.selectOnlyLeaf ) {
         options.jstree.plugins.push('conditionalselect');
@@ -12,62 +9,62 @@ function kl83InitJsTree ( $, options ) {
         };
     }
 
-    // Removing hidden inputs, created by Yii. They are created, when the form method is GET.
-    form.children('input[name^="'+options.inputName+'"]').remove();
-
     /**
      * Update list of selected elements
      * @returns null
      */
     var updateSelectedText = function () {
         var nodes = jstree.get_selected(true);
-        var text = '';
-        for ( var i in nodes ) {
-            text += nodes[i].text + ", ";
+        if ( nodes.length ) {
+            rootEl.find('.selected-items').removeClass('empty');
+            var text = '';
+            for ( var i in nodes ) {
+                text += nodes[i].text + ", ";
+            }
+            rootEl.find('.selected-items .items-text').text(text.replace(/,\s$/, ''));
+        } else {
+            rootEl.find('.selected-items').addClass('empty');
+            rootEl.find('.selected-items .items-text').text('');
         }
-        selectedEl.text(text.replace(/,\s$/, ''));
     };
 
     /**
-     * Update hidden inputs
+     * Update hidden input
      * @returns null
      */
-    var updateHiddenItems = function () {
+    var updateHiddenInput = function () {
         var nodes = jstree.get_checked();
-        if ( options.multiple ) {
-            hiddenWrapper.html('');
-            for ( var i in nodes ) {
-                hiddenWrapper.append('<input type="hidden" name="'+options.inputName+'[]" value="'+nodes[i]+'">');
+        if ( nodes.length ) {
+            if ( options.multiple ) {
+                hiddenInput.val(JSON.stringify(nodes));
+            } else {
+                hiddenInput.val(nodes[0]);
             }
         } else {
-            if ( nodes.length ) {
-                rootEl.find('[type="hidden"]').val(nodes[0]);
-            } else {
-                rootEl.find('[type="hidden"]').val('');
-            }
+            hiddenInput.val('');
         }
     };
 
     // Initialize widget
-    var jstree = jstreeEl
+    var jstree = rootEl.find('.jstree')
         .on('ready.jstree', function(){
-            if ( options.multiple ) {
-                hiddenWrapper.find('input').each(function(){
-                    var nodeId = $(this).val();
-                    jstree.check_node(nodeId);
-                    jstree._open_to(nodeId);
-                });
-            } else {
-                var nodeId = rootEl.find('[type="hidden"]').val();
-                jstree.check_node(nodeId);
-                jstree._open_to(nodeId);
+            if ( hiddenInput.val() ) {
+                if ( options.multiple ) {
+                    var value = JSON.parse(hiddenInput.val());
+                } else {
+                    value = [ hiddenInput.val() ];
+                }
+                for ( var i in value ) {
+                    jstree.check_node(value[i]);
+                    jstree._open_to(value[i]);
+                }
             }
             if ( options.popup ) {
                 updateSelectedText();
             }
         })
         .on('changed.jstree', function(){
-            updateHiddenItems();
+            updateHiddenInput();
             if ( options.popup ) {
                 updateSelectedText();
             }

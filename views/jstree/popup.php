@@ -5,8 +5,7 @@ use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $widget kl83\jstree\JsTree */
-/* @var $inputName string */
-/* @var $value array|int */
+/* @var $hasModel boolean */
 
 $widget = $this->context;
 
@@ -14,7 +13,10 @@ $popupId = "{$widget->options['id']}-popup";
 
 echo Html::beginTag('div', $widget->options);
 
-    echo Html::tag('div', '', [ 'class' => 'selected-items' ]);
+    echo Html::beginTag('div', [ 'class' => 'selected-items' ]);
+        echo Html::tag('span', Yii::t('yii', '(not set)'), [ 'class' => 'not-set-text' ]);
+        echo Html::tag('span', '', [ 'class' => 'items-text' ]);
+    echo Html::endTag('div');
 
     Modal::begin([
         'id' => $popupId,
@@ -24,10 +26,11 @@ echo Html::beginTag('div', $widget->options);
 
         echo Html::tag('div', '', [ 'class' => 'jstree' ]);
 
-        echo $this->render('_hiddenInput', [
-            'inputName' => $inputName,
-            'value' => $value,
-        ]);
+        if ( $hasModel ) {
+            echo Html::activeHiddenInput($widget->model, $widget->attribute);
+        } else {
+            echo Html::hiddenInput($widget->name, $widget->value);
+        }
 
     Modal::end();
 

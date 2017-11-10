@@ -12,6 +12,6 @@ class WidgetAsset extends \yii\web\AssetBundle {
         'js/jstree.js',
     ];
     public $css = [
-//        'css/jstree.css',
+        'css/jstree.css',
     ];
 }
