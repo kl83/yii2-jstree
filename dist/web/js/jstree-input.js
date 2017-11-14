@@ -1,4 +1,4 @@
-function kl83InitJsTree ( $, options ) {
+function kl83InitJsTreeInput ( $, options ) {
     var rootEl = $('#'+options.id);
     var hiddenInput = rootEl.find('[type="hidden"]');
 

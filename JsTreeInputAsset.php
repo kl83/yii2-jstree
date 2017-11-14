@@ -9,9 +9,9 @@ class JsTreeInputAsset extends \yii\web\AssetBundle {
         'yii\bootstrap\BootstrapAsset',
     ];
     public $js = [
-        'js/jstree.js',
+        'js/jstree-input.js',
     ];
     public $css = [
-        'css/jstree.css',
+        'css/jstree-input.css',
     ];
 }
