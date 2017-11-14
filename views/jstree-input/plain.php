@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $widget kl83\jstree\JsTree */
+/* @var $widget kl83\jstree\JsTreeInput */
 /* @var $hasModel boolean */
 
 $widget = $this->context;
