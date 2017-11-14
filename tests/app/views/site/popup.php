@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model yii\base\DynamicModel */
 
-$this->title = "JsTree popup";
+$this->title = "JsTreeInput popup";
 
 ?>
 <div class="site-index">
@@ -15,7 +15,7 @@ $this->title = "JsTree popup";
 
     <?php $form = ActiveForm::begin() ?>
 
-    <?= $form->field($model, 'test')->widget('kl83\jstree\JsTree', [
+    <?= $form->field($model, 'test')->widget('kl83\jstree\JsTreeInput', [
         'popup' => true,
         'source' => [ 'site/source' ],
     ]) ?>

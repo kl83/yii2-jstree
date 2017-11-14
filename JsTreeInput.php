@@ -1,11 +1,10 @@
 <?php
 namespace kl83\jstree;
 
-use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Url;
 
-class JsTree extends \yii\widgets\InputWidget
+class JsTreeInput extends \yii\widgets\InputWidget
 {
     /**
      * Enable multiple selections.

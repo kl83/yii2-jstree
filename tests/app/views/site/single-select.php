@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model yii\base\DynamicModel */
 
-$this->title = "JsTree single select";
+$this->title = "JsTreeInput single select";
 
 ?>
 <div class="site-index">
@@ -15,7 +15,7 @@ $this->title = "JsTree single select";
 
     <?php $form = ActiveForm::begin() ?>
 
-    <?= $form->field($model, 'test')->widget('kl83\jstree\JsTree', [
+    <?= $form->field($model, 'test')->widget('kl83\jstree\JsTreeInput', [
         'multiple' => false,
         'source' => [ 'site/source' ],
     ]) ?>
