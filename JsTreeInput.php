@@ -58,7 +58,7 @@ class JsTreeInput extends \yii\widgets\InputWidget
             $this->options['class'] = 'kl83-jstree-input';
         }
         $this->view->registerJs("kl83InitJsTreeInput(jQuery, ".Json::encode($this->clientOptions).");");
-        return $this->render( $this->popup ? 'jstree/popup' : 'jstree/plain', [
+        return $this->render( $this->popup ? 'jstree-input/popup' : 'jstree-input/plain', [
             'hasModel' => $this->hasModel(),
         ]);
     }
