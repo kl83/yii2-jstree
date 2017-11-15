@@ -22,15 +22,17 @@ class JsTreeBuilder extends \yii\widgets\InputWidget {
             'renamePrompt' => Yii::t('kl83/jstree', 'Enter new label'),
             'addPrompt' => Yii::t('kl83/jstree', 'Enter new node label'),
             'addText' => Yii::t('kl83/jstree', 'New node'),
-//            'jstree' => [
-//                'core' => new \stdClass(),
-//            ],
         ];
     }
 
     public function run() {
         $this->registerTranslations();
         JsTreeBuilderAsset::register($this->view);
+        if ( isset($this->options['class']) ) {
+            $this->options['class'] .= ' kl83-jstree-builder';
+        } else {
+            $this->options['class'] = 'kl83-jstree-builder';
+        }
         $this->view->registerJs('kl83InitJsTreeBuilder('.Json::encode($this->clientOptions).');');
         return $this->render('jstree-builder', [
             'hasModel' => $this->hasModel(),

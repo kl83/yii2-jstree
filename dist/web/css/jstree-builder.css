@@ -1,3 +1,9 @@
+.kl83-jstree-builder .jstree-buttons {
+  margin: 15px -5px 0;
+}
+.kl83-jstree-builder .jstree-buttons > * {
+  margin: 0 5px;
+}
 .kl83-jstree-builder-form {
   position: relative;
 }

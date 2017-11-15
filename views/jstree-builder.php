@@ -12,7 +12,7 @@ echo Html::beginTag('div', $widget->options);
 
     echo Html::tag('div', '', [ 'class' => 'jstree' ]);
 
-    echo Html::beginTag('div', [ 'class' => 'buttons' ]);
+    echo Html::beginTag('div', [ 'class' => 'jstree-buttons' ]);
         echo Html::button(Yii::t('kl83/jstree', 'Add node'), [ 'class' => 'add-node btn btn-default' ]);
         echo Html::button(Yii::t('kl83/jstree', 'Rename node'), [ 'class' => 'rename-node btn btn-default' ]);
         echo Html::button(Yii::t('kl83/jstree', 'Remove node'), [ 'class' => 'remove-node btn btn-default' ]);
