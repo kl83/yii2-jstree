@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'JsTree',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,12 +37,16 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'jsTree', 'url' => '#', 'items' => [
+            ['label' => 'JsTreeInput', 'url' => '#', 'items' => [
                 ['label' => 'Plain', 'url' => ['site/index']],
                 ['label' => 'Model', 'url' => ['site/model']],
                 ['label' => 'Single select', 'url' => ['site/single-select']],
                 ['label' => 'Only leaf', 'url' => ['site/only-leaf']],
                 ['label' => 'Popup', 'url' => ['site/popup']],
+            ]],
+            ['label' => 'JsTreeBuilder', 'url' => '#', 'items' => [
+                ['label' => 'Standalone', 'url' => ['builder/index']],
+                ['label' => 'With linked form', 'url' => ['builder/with-form']],
             ]],
         ],
     ]);
