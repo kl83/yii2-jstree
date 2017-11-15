@@ -102,7 +102,7 @@ var kl83InitJsTreeBuilder;
      */
     var readNodeData = function ( jsTree, nodeId, formSelector ) {
         var node = jsTree.get_node(nodeId);
-        if ( ! node.data ) {
+        if ( typeof node.data !== 'object' || node.data.length !== undefined ) {
             node.data = {};
         }
         $(formSelector + ' input').each(function(){
