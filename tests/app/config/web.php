@@ -21,7 +21,7 @@ return [
         ],
         'assetManager' => [            
             'basePath' => __DIR__ . '/../web/assets',
-            'forceCopy' => true,
+            'linkAssets' => true,
         ],
         'urlManager' => [
             'showScriptName' => true,
