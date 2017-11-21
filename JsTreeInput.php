@@ -17,7 +17,12 @@ class JsTreeInput extends \yii\widgets\InputWidget
      */
     public $selectOnlyLeaf = false;
     /**
-     * Prints the button. Clicking the button displays a pop-up window with a tree.
+     * Limit the selection by specified depth.
+     * @var integer
+     */
+    public $selectOnlyDepth;
+    /**
+     * Prints the button. Clicking the button displays a pop-up window with a tree. 1 is root nodes.
      * @var boolean
      */
     public $popup = false;
@@ -33,6 +38,7 @@ class JsTreeInput extends \yii\widgets\InputWidget
             'id' => $this->options['id'],
             'multiple' => $this->multiple,
             'selectOnlyLeaf' => $this->selectOnlyLeaf,
+            'selectOnlyDepth' => $this->selectOnlyDepth,
             'popup' => $this->popup,
             'jstree' => [
                 'plugins' => [ 'checkbox' ],

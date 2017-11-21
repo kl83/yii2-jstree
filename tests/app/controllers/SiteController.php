@@ -60,6 +60,14 @@ class SiteController extends \yii\web\Controller
         ]);
     }
 
+    public function actionOnlyDepth()
+    {
+        $model = $this->prepareModel();
+        return $this->render('only-depth', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionPopup()
     {
         $model = $this->prepareModel();
@@ -87,6 +95,14 @@ class SiteController extends \yii\web\Controller
                 'id' => 112,
                 'parent' => 123,
                 'text' => 'child 2',
+            ], [
+                'id' => 1114,
+                'parent' => 111,
+                'text' => 'subchild 1',
+            ], [
+                'id' => 1125,
+                'parent' => 111,
+                'text' => 'subchild 2',
             ]
         ]);
     }

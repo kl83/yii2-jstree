@@ -1,11 +1,30 @@
 function kl83InitJsTreeInput ( $, options ) {
     var rootEl = $('#'+options.id);
     var hiddenInput = rootEl.find('[type="hidden"]');
+    var condSelectFunctions = [];
 
     if ( options.selectOnlyLeaf ) {
+        condSelectFunctions.push(function ( node ) {
+            return jstree.is_leaf(node);
+        });
+    }
+
+    if ( $.isNumeric(options.selectOnlyDepth) ) {
+        options.jstree.checkbox.three_state = false;
+        condSelectFunctions.push(function ( node ) {
+            return node.parents.length === parseInt(options.selectOnlyDepth);
+        });
+    }
+
+    if ( condSelectFunctions.length ) {
         options.jstree.plugins.push('conditionalselect');
         options.jstree.conditionalselect = function ( node ) {
-            return jstree.is_leaf(node);
+            for ( var i in condSelectFunctions ) {
+                if ( ! condSelectFunctions[i](node) ) {
+                    return false;
+                }
+            }
+            return true;
         };
     }
 

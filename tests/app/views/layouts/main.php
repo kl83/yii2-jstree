@@ -42,6 +42,7 @@ AppAsset::register($this);
                 ['label' => 'Model', 'url' => ['site/model']],
                 ['label' => 'Single select', 'url' => ['site/single-select']],
                 ['label' => 'Only leaf', 'url' => ['site/only-leaf']],
+                ['label' => 'Only depth', 'url' => ['site/only-depth']],
                 ['label' => 'Popup', 'url' => ['site/popup']],
             ]],
             ['label' => 'JsTreeBuilder', 'url' => '#', 'items' => [
